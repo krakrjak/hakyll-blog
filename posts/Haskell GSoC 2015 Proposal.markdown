@@ -8,9 +8,9 @@ Tracking performance metrics with a large project like GHC is a daunting task.  
 
 #Summary
 
-    Give nofib a better test runner interface
-    Make nofib numbers more meaningful
-    Make gipeda production ready
++    Give nofib a better test runner interface
++    Make nofib numbers more meaningful
++    Make gipeda production ready
 
 ##Nofib
 
