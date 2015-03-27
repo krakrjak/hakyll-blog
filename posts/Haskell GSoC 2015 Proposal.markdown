@@ -32,4 +32,4 @@ Compared to nofib, gipeda, hosted at https://github.com/nomeata/gipeda.git, is a
 
 # Addendum
 
-My proposal will not be evaluated as the original abstract was too long and through the editing I missed the window of opportunity.  Once I hit submit on the proposal, the submission window had expired (about 2 seconds late).  This stands as a record of my intentions, paid or otherwise, to work on these tasks.
+My proposal was not in melange. Once I hit submit on the proposal, the submission window had expired (about 2 seconds late).  This stands as a record of a bad GSoC proposal.  Problems include lack of incoporation of feedback from potential mentors.  Lack of depth or specifics in time estimation.  This is a good first draft and will inspire future posts about these topics as I work with these softwares more.
