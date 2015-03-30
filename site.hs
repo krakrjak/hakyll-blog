@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
-import           Data.Monoid (mappend)
+import           Data.Monoid ((<>), mappend)
 import           Hakyll
 
 
@@ -15,7 +15,11 @@ main = hakyll $ do
         route   idRoute
         compile compressCssCompiler
 
-    match (fromList ["about.rst", "contact.markdown"]) $ do
+    match (fromList ["humans.txt", "robots.txt"]) $ do
+        route   idRoute
+        compile copyFileCompiler
+
+    match "contact.markdown" $ do
         route   $ setExtension "html"
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
@@ -25,8 +29,30 @@ main = hakyll $ do
         route $ setExtension "html"
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
+            >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
+
+    create ["sitemap.xml"] $ do
+	let sitemapCtx = listField "posts" postCtx (recentFirst =<< loadAll "posts/*")
+                      <> defaultContext
+        route idRoute
+        compile $ makeItem ""
+            >>= loadAndApplyTemplate "templates/sitemap.html" sitemapCtx
+
+    create ["atom.xml"] $ do
+        route idRoute
+        compile $ do
+               let atomCtx = postCtx <> bodyField "description"
+               posts <- recentFirst =<< loadAllSnapshots "posts/*" "content"
+               renderAtom feedconfig atomCtx posts
+
+    create ["rss.xml"] $ do
+        route idRoute
+        compile $ do
+            let rssCtx = postCtx <> bodyField "description" 
+            posts <- recentFirst =<< loadAllSnapshots "posts/*" "content"
+            renderRss feedconfig rssCtx posts
 
     create ["archive.html"] $ do
         route idRoute
@@ -65,7 +91,15 @@ defaultRoute = do
 
 
 --------------------------------------------------------------------------------
+feedconfig :: FeedConfiguration
+feedconfig = FeedConfiguration { feedTitle       = "krakrjak"
+                               , feedDescription = "Regular Blog"
+                               , feedAuthorName  = "Zac Slade"
+                               , feedAuthorEmail = "<krakrjak@gmail.com>"
+                               , feedRoot        = "http://krakrjak.com" }
+
 postCtx :: Context String
-postCtx =
-    dateField "date" "%B %e, %Y" `mappend`
-    defaultContext
+postCtx = dateField  "date"     "%B %e, %Y"
+       <> dateField  "isodate"  "%F"
+       <> constField "siteroot" (feedRoot feedconfig)
+       <> defaultContext

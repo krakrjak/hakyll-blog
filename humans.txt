@@ -1,0 +1,12 @@
+/* TEAM */
+	Dude: Zac Slade
+	Contact: krakrjak gm@ail
+	From: Fayetteville, Arkansas USA
+
+/* THANKS */
+
+/* SITE */
+	Last update: 2015-03-29
+	Language: English
+	Doctype: HTML5
+	IDE: Vim
