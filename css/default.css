@@ -1,18 +1,39 @@
 body {
-    color: #332715;
-    font-size: 16px;
+    background-color: #2C2212;
+    color: #F2BA65;
+    font-size: 10pt;
     margin: 0px auto 0px auto;
     width: 600px;
 }
 
+a:link { 
+    color: #F2BA65;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #A69377;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #A67F45;
+    text-decoration: underline;
+}
+
+a:active {
+    color: #A67F45;
+    text-decoration: underline;
+}
+
 div#header {
-    border-bottom: 2px solid #594525;
+    border-bottom: 2px solid #A69377;
     margin-bottom: 30px;
     padding: 12px 0px 12px 0px;
 }
 
 div#logo a {
-    color: #D9A65A;
+    color: #A76F45;
     float: left;
     font-size: 18px;
     font-weight: bold;
@@ -24,7 +45,7 @@ div#header #navigation {
 }
 
 div#header #navigation a {
-    color: #D9A65A;
+    color: #A76F45;
     font-size: 18px;
     font-weight: bold;
     margin-left: 12px;
@@ -33,8 +54,7 @@ div#header #navigation a {
 }
 
 div#footer {
-    border-top: solid 2px black;
-    color: #D9A65A;
+    border-top: solid 2px #A69377;
     font-size: 12px;
     margin-top: 30px;
     padding: 12px 0px 12px 0px;
@@ -42,15 +62,27 @@ div#footer {
 }
 
 h1 {
-    font-size: 24px;
+    font-size: 20pt;
+    font-variant: small-caps;
 }
 
 h2 {
-    font-size: 20px;
+    font-size: 18pt;
+    font-variant: small-caps;
+}
+
+h3 {
+    font-size: 16pt;
+    font-variant: small-caps;
+}
+
+h4 {
+    font-size: 14pt;
+    font-variant: small-caps;
 }
 
 div.info {
-    color: #D9A65A;
-    font-size: 14px;
+    color: #A69377;
+    font-size: 14pt;
     font-style: italic;
 }
