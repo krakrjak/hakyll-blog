@@ -1,18 +1,18 @@
 body {
-    color: black;
+    color: #332715;
     font-size: 16px;
     margin: 0px auto 0px auto;
     width: 600px;
 }
 
 div#header {
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #594525;
     margin-bottom: 30px;
     padding: 12px 0px 12px 0px;
 }
 
 div#logo a {
-    color: black;
+    color: #D9A65A;
     float: left;
     font-size: 18px;
     font-weight: bold;
@@ -24,7 +24,7 @@ div#header #navigation {
 }
 
 div#header #navigation a {
-    color: black;
+    color: #D9A65A;
     font-size: 18px;
     font-weight: bold;
     margin-left: 12px;
@@ -34,7 +34,7 @@ div#header #navigation a {
 
 div#footer {
     border-top: solid 2px black;
-    color: #555;
+    color: #D9A65A;
     font-size: 12px;
     margin-top: 30px;
     padding: 12px 0px 12px 0px;
@@ -50,7 +50,7 @@ h2 {
 }
 
 div.info {
-    color: #555;
+    color: #D9A65A;
     font-size: 14px;
     font-style: italic;
 }
