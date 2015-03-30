@@ -1,9 +1,33 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
-import           Data.Monoid ((<>), mappend)
+{-# LANGUAGE BangPatterns #-}
+import           Data.Monoid ((<>))
+import           System.IO.Unsafe (unsafePerformIO)
 import           Hakyll
 
+--------------------------------------------------------------------------------
+feedconfig :: FeedConfiguration
+feedconfig = FeedConfiguration { feedTitle       = "krakrjak"
+                               , feedDescription = "Regular Blog"
+                               , feedAuthorName  = "Zac Slade"
+                               , feedAuthorEmail = "<krakrjak@gmail.com>"
+                               , feedRoot        = "http://krakrjak.com" }
 
+--------------------------------------------------------------------------------
+postCtx :: Context String
+postCtx = dateField  "date"     "%B %e, %Y"
+       <> dateField  "isodate"  "%F"
+       <> gblCtx
+
+gblCtx :: Context String
+gblCtx = constField "gakey"    apikey
+       <> constField "siteroot" (feedRoot feedconfig)
+       <> defaultContext
+    where
+        !apikey = getKey "key.txt"
+
+getKey :: String -> String
+getKey = trim . unsafePerformIO . readFile
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
@@ -22,7 +46,7 @@ main = hakyll $ do
     match "contact.markdown" $ do
         route   $ setExtension "html"
         compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/default.html" defaultContext
+            >>= loadAndApplyTemplate "templates/default.html" gblCtx
             >>= relativizeUrls
 
     match "posts/*" $ do
@@ -58,10 +82,9 @@ main = hakyll $ do
         route idRoute
         compile $ do
             posts <- recentFirst =<< loadAll "posts/*"
-            let archiveCtx =
-                    listField "posts" postCtx (return posts) `mappend`
-                    constField "title" "Archives"            `mappend`
-                    defaultContext
+            let archiveCtx = listField "posts" postCtx (return posts)
+                          <> constField "title" "Archives" 
+                          <> gblCtx
 
             makeItem ""
                 >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
@@ -78,28 +101,11 @@ defaultRoute = do
         route idRoute
         compile $ do
             posts <- recentFirst =<< loadAll "posts/*"
-            let indexCtx =
-                    listField "posts" postCtx (return posts) `mappend`
-                    constField "title" "Home"                `mappend`
-                    defaultContext
+            let indexCtx = listField "posts" postCtx (return posts)
+                        <> constField "title" "Home"
+                        <> gblCtx
 
             getResourceBody
                 >>= applyAsTemplate indexCtx
                 >>= loadAndApplyTemplate "templates/default.html" indexCtx
                 >>= relativizeUrls
-
-
-
---------------------------------------------------------------------------------
-feedconfig :: FeedConfiguration
-feedconfig = FeedConfiguration { feedTitle       = "krakrjak"
-                               , feedDescription = "Regular Blog"
-                               , feedAuthorName  = "Zac Slade"
-                               , feedAuthorEmail = "<krakrjak@gmail.com>"
-                               , feedRoot        = "http://krakrjak.com" }
-
-postCtx :: Context String
-postCtx = dateField  "date"     "%B %e, %Y"
-       <> dateField  "isodate"  "%F"
-       <> constField "siteroot" (feedRoot feedconfig)
-       <> defaultContext
