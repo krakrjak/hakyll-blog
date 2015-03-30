@@ -2,16 +2,18 @@ body {
     background-color: #2C2212;
     color: #F2BA65;
     font-size: 10pt;
+    font-family: Arial, Helvetica, sans-serif;
     margin: 0px auto 0px auto;
     width: 600px;
 }
 
 pre {
-    border: 2px dotted #A69377;
+    border: 1px dotted #A69377;
 }
 
 code {
-    font-family: "monospace";
+    font-family: "Courier New", Courier, monospace;
+    font-size: 10pt;
 }
 
 a:link { 
