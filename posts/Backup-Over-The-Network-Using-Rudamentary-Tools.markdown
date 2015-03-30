@@ -40,11 +40,14 @@ Now that you've logged in using your key and the agent is running, you will be a
 
 Now to execute the dump over the network use the following:
 
-	ssh root@host.example.com gzip -1 -c /dev/sda | gzip -d - | sudo tee /dev/sdh > /dev/null
+	ssh root@host.example.com gzip -1 -c /dev/sda \\
+		| gzip -d - | sudo tee /dev/sdh > /dev/null
 
 If you'd like to monitor the progress of your backup I've found pv to be a great tool. I modify the above line to the following when making a mirror copy of a router.
 
-	ssh root@host.example.com gzip -1 -c /dev/sda | pv -e -r -b -s 4096m | gzip -d - | sudo tee /dev/sdh > /dev/null
+	ssh root@host.example.com gzip -1 -c /dev/sda \\
+		| pv -e -r -b -s 4096m | gzip -d - \\
+		| sudo tee /dev/sdh > /dev/null
 
 This gives a nice status bar like the following:
 
