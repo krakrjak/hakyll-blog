@@ -14,7 +14,7 @@ Tracking performance metrics with a large project like GHC is a daunting task.  
 
 ##Nofib
 
-Nofib is hosted at https://git.haskell.org/nofib.git and contains a large variety of code written in Haskell to exercise GHC.  Thanks to this suite, several bugs have been found before they found their way into the tree.  The primary usage of nofib is to compile the suite after making changes to GHC, running the suite, and comparing the results before the changes to after the changes are made.
+Nofib is hosted at [git.haskell.org](https://git.haskell.org/nofib.git) and contains a large variety of code written in Haskell to exercise GHC.  Thanks to this suite, several bugs have been found before they found their way into the tree.  The primary usage of nofib is to compile the suite after making changes to GHC, running the suite, and comparing the results before the changes to after the changes are made.
 
 The secondary usage of nofib is to track performance data across releases of GHC.  More recently nofib runtime data is used to track performance per commit to GHC.  These last two roles are where the cracks begin to show.
 
@@ -28,7 +28,7 @@ This approach would leave the build system mostly untouched, but would add anoth
 
 ##Gipeda
 
-Compared to nofib, gipeda, hosted at https://github.com/nomeata/gipeda.git, is a very young piece of software.  Gipeda is a test runner and summarizes data across multiple runs of the repository under test.  Currently there are a lot of manual steps required to make gipeda work correctly for nofib or GHC directly.  Some work has been done in this area.  My job would be to write better documentation around gipeda and assist in reducing the manual steps required to get a site up and running with historic performance data.  So far it has been difficult to see how much work will need to be done on gipeda directly compared to updating nofib, but from my tinkering it should be the least amount of work in this proposal, but still could be 1/3 of the time.
+Compared to nofib, gipeda, hosted at [Github](https://github.com/nomeata/gipeda.git), is a very young piece of software.  Gipeda is a test runner and summarizes data across multiple runs of the repository under test.  Currently there are a lot of manual steps required to make gipeda work correctly for nofib or GHC directly.  Some work has been done in this area.  My job would be to write better documentation around gipeda and assist in reducing the manual steps required to get a site up and running with historic performance data.  So far it has been difficult to see how much work will need to be done on gipeda directly compared to updating nofib, but from my tinkering it should be the least amount of work in this proposal, but still could be 1/3 of the time.
 
 # Addendum
 

@@ -6,6 +6,14 @@ body {
     width: 600px;
 }
 
+pre {
+    border: 2px dotted #A69377;
+}
+
+code {
+    font-family: "monospace";
+}
+
 a:link { 
     color: #A98247;
     text-decoration: none;
